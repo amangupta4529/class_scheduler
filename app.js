@@ -7,10 +7,10 @@ const host="localhost";
 const port=process.env.PORT || 3000;
 
 var connection=mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:"",
-    database:"scheduler"
+    host:'b4812psuh1kisa3cdzml-mysql.services.clever-cloud.com',
+    user:'uklwzu7gncuyhtvp',
+    password:"ztquOtOVbaz15Ecudrgu",
+    database:"b4812psuh1kisa3cdzml"
 });
 connection.connect((err)=>{
     if(err)console.log(err);
