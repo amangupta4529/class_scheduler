@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scheduler</title>
+     <link rel="stylesheet" href="/css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div id="container">
+      <div class="header">
+        <div id="monthDisplay"></div>
+        <div id="teachers">
+          <select id="customselect" class="customselectdesign">
+            <option value="0">Select Teachers</option>
+          </select>
+        </div>
+        <div>
+          <button id="backButton" class="design">Back</button>
+          <button id="nextButton" class="design">Next</button>
+        </div>
+        <button class="addteacher">
+          <i class="fa fa-2x fa-user-plus icon"></i>Add Teachers
+        </button>
+      </div>
+      <div id="weekdays">
+        <div>Sunday</div>
+        <div>Monday</div>
+        <div>Tuesday</div>
+        <div>Wednesday</div>
+        <div>Thursday</div>
+        <div>Friday</div>
+        <div>Saturday</div>
+      </div>
+
+      <div id="calendar"></div>
+      
+    </div>
+    <button id="addbutton">add</button>
+    <div id="newEventModal" class="modal teachermodal">
+      <h2 class="hading">Schedule</h2>
+      <div id="teacherschedule">
+        <div class="box"> 
+          <div class="margen">
+          <label for="topic" form="topic">Topic</label>  
+          <input type="text" id="topic"></div>
+          <div class="margen">
+          <label for="starttime">Start Time</label>
+          <input type="time" id="starttime" class="timing" name="starttime"/>
+        </div>
+        </div>
+        <div class="box">
+          <div id="date" class="margen">
+            <label for="">Date</label>
+            <input type="date"  id="dateinp"/>
+          </div>
+          <label for="endtime" class="margen">End Time</label>
+          <input type="time" id="endtime" class="timing" name="endtime"/>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="saveButton">Save</button>
+        <button class="cancelButton">Cancel</button>
+      </div>
+    </div>
+    <div id="addteachersmodal" class="modal">
+      <h2>Add Teachers</h2>
+
+      <div class="divide">
+        <label for="teacher">Teacher</label>
+        <input type="text" id="teacher" placeholder="Enter Teacher Name" />
+      </div>
+      <div class="buttons">
+        <button class="saveButton" id="addteacherdb">Add</button>
+        <button class="cancelButton">Cancel</button>
+      </div>
+    </div>
+
+    <!-- <div id="deleteEventModal">
+      <h2>Event</h2>
+      <p id="eventText"></p>
+      <button id="deleteButton" >Delete</button>
+      <button id="closeButton">Close</button>
+    </div> -->
+
+    <div id="modalBackDrop"></div>
+
+    <div class="sec " id="">
+      <div class="head ">
+        <select id="sort" class="customselectdesign">
+            <option value="0">sort</option>
+            <option value="0">day</option>
+            <option value="0">weekly</option>
+            <option value="0">monthly</option>
+          </select>
+          <button class="saveButton">apply</button>
+      </div>
+      <h2 style="text-align: center;" >upcoming classes</h2>
+      <div class="listclass">
+        <div id="datecol">Date</div>
+        <div id="namecol">NAME</div>
+        <div id="startcol">START</div>
+        <div id="endcol">END</div>
+      </div>
+    </div>
+  </body>
+  <script src="/src/script.js"></script>
+</html>
