@@ -3,6 +3,8 @@ const path=require('path');
 const mysql=require('mysql');
 
 
+const host="localhost";
+const port=process.env.PORT || 3000;
 
 var connection=mysql.createConnection({
     host:'localhost',
@@ -21,8 +23,6 @@ app.set('view engine','hbs');
 app.use(express.json());
 app.use(express.static(path.join(__dirname,'/public')));
 
-const host="localhost";
-const port="3000";
 app.get('/',(req,res)=>{
     res.render('index.hbs');
 })
