@@ -69,13 +69,15 @@ body {
   .day:hover {
     background-color:rgb(146, 137, 137);
   }
-  
+  .day + #currentDay {
+    background-color:#5d9ab9;
+  }
   .padding {
     cursor: default !important;
     background-color: #FFFCFF !important;
     box-shadow: none !important;
   }
-.modal{
+.modal,#deleteEventModal{
     display: none;
     z-index: 40;
     padding: 25px;
@@ -101,11 +103,11 @@ body {
 
 
  
-  .cancelButton, .deleteButton {
+  .cancelButton, .deleteButton,#deleteButton {
     background-color: #d36c6c;
   }
-  .saveButton, .closeButton {
-    background-color: #92a1d1;
+  .saveButton, .closeButton,#closeButton {
+    background-color: #97a9e2;
   }
 
   #header button:hover{
@@ -221,4 +223,14 @@ font-size: larger;
   border-radius: 5px;
   max-height: 55px;
   overflow: hidden;
+}
+.event1{
+  font-size: 20px;
+  padding: 3px;
+  background-color: #58bae4;
+  color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

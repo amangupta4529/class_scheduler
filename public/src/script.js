@@ -7,6 +7,7 @@ const body=document.getElementsByTagName('body')[0];
 const calendar = document.getElementById('calendar');
 const modal=document.getElementById("newEventModal");
 const Selection=document.getElementsByClassName('sec')[0];
+const datecol=document.getElementById("datecol");
 const addteachermodal=document.getElementById("addteachersmodal");
 // const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
@@ -16,6 +17,8 @@ const addteacher=document.getElementsByClassName("addteacher")[0];
 const customselect=document.getElementById("customselect");
 const scheduleteacher=document.getElementById("scheduleteacher");
 const sorting=document.getElementsByClassName("customselectdesign")[0];
+const closeButton=document.getElementById('closeButton');
+let eventText=document.getElementById('eventText');
 let datevalue;
 //buttons
 const addbtn=document.getElementsByClassName('saveButton');
@@ -87,7 +90,6 @@ function load() {
   for(let i = 1; i <= paddingDays + daysInMonth; i++) {
     const daySquare = document.createElement('div');
     daySquare.classList.add('day');
-
     const  dayString = `${month + 1}/${i - paddingDays}/${year}`;
 
 let event;
@@ -100,14 +102,16 @@ let event;
         daySquare.id = 'currentDay';
       }
    
-      daySquare.addEventListener('click', () => openModal1(dayString));
+     
     } else {
       daySquare.classList.add('padding');
     }
+    let ans=false;
     arr.find((ele)=>{
       const d=new Date(ele.datee);
       const d1=new Date(dayString);
       if(ele.name==customselect.value &&  d.getDate()==d1.getDate() && d.getMonth()==d1.getMonth() && d.getFullYear() ==d1.getFullYear()){
+       ans=true;
         event=ele;
         const element1=document.createElement('div');
         element1.classList.add('event');
@@ -115,9 +119,25 @@ let event;
         <div>${event.starttime}</div>
         <div>${event.endtime}</div>`
         daySquare.appendChild(element1);
+        daySquare.addEventListener('click', () =>{
+          if(confirm("Do You Want Schedule Teachers")){
+            openModal1(dayString);
+          }else{
+            deleteEventModal.style.display='block';
+            let tempele= document.createElement('div');
+            tempele.classList.add('event1');
+            tempele.innerHTML=element1.innerHTML;
+            eventText.appendChild(tempele);
+            modalBackDrop.style.display='block';
+          }
+        });
       }
+      
     })
+    if(!ans) daySquare.addEventListener('click', () => openModal1(dayString));
+
     calendar.appendChild(daySquare);  
+    
   }
  
 }
@@ -129,19 +149,26 @@ function closeModal(){
   backDrop.style.display = 'none';
   load();
 }
-function removeAllChildNodes(parent) {
-  while (parent.child) {
-      parent.removeChild(parent.firstChild);
+
+
+
+function removeAllChildNodes(parent){
+  
+  while(parent.lastElementChild){
+      parent.removeChild(parent.lastElementChild);
   }
 }
+
+
+
 let events;
 const getschedule=()=>{
-
    fetch(`/fetchclasses`).then((res)=>{
     return res.json();
   }).then((data)=>{
     arr=data;
     load();
+    removeAllChildNodes(datecol); 
     removeAllChildNodes(namecol);
     removeAllChildNodes(startcol);
     removeAllChildNodes(endcol);               
@@ -260,7 +287,12 @@ addteacherdb.addEventListener('click',()=>{
     load();
    
 })
-
+closeButton.addEventListener('click',()=>{
+  console.log(eventText);
+  removeAllChildNodes(eventText);
+  deleteEventModal.style.display='none';
+  modalBackDrop.style.display='none';
+})
 }
 getteacher();
 initButtons();
