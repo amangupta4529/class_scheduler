@@ -23,8 +23,6 @@ let datevalue;
 //buttons
 const addbtn=document.getElementsByClassName('saveButton');
 
-
-
 const getteacher= ()=> {
     fetch("/getteachers").then((res)=>{
            return res.json();
@@ -127,7 +125,38 @@ let event;
             let tempele= document.createElement('div');
             tempele.classList.add('event1');
             tempele.innerHTML=element1.innerHTML;
+            const delbutt=document.createElement('button');
+            delbutt.innerHTML="Delete";
+            delbutt.id="deleteschedule";
+            tempele.appendChild(delbutt);
             eventText.appendChild(tempele);
+            deleteschedule.addEventListener('click',()=>{
+              
+              console.log(delbutt);
+              console.log(delbutt.parentElement.childNodes);
+              // try{
+              //   const params={
+              //     method:"DELETE",headers: {
+              //       'Content-Type': 'application/json'
+              //     },
+              //     body:JSON.stringify({
+                    
+              //     })
+              //   };
+              //   const url="/deleteschedule";
+              //   const res= await fetch(url,params);
+              //   getteacher();
+              //   load();
+              // }
+              // catch(err){
+              //   console.log(err);
+              // }
+            
+            }
+            
+            );
+            
+            
             modalBackDrop.style.display='block';
           }
         });
@@ -293,6 +322,7 @@ closeButton.addEventListener('click',()=>{
   deleteEventModal.style.display='none';
   modalBackDrop.style.display='none';
 })
+
 }
 getteacher();
 initButtons();

@@ -3,7 +3,7 @@ const path=require('path');
 const mysql=require('mysql');
 
 
-const host="localhost";
+const host="0.0.0.0";
 const port=process.env.PORT || 3000;
 
 var connection=mysql.createConnection({
@@ -11,6 +11,10 @@ var connection=mysql.createConnection({
     user:'uklwzu7gncuyhtvp',
     password:"ztquOtOVbaz15Ecudrgu",
     database:"b4812psuh1kisa3cdzml"
+    // host:'localhost',
+    // user:'root',
+    // password:'',
+    // database:"scheduler"
 });
 connection.connect((err)=>{
     if(err)console.log(err);
@@ -21,11 +25,12 @@ const app=express();
 app.use(express.urlencoded({extended:false}));
 app.set('view engine','hbs');
 app.use(express.json());
-app.use(express.static(path.join(__dirname,'/public')));
+
 
 app.get('/',(req,res)=>{
     res.render('index.hbs');
 })
+app.use(express.static(path.join(__dirname,'/public')));
 
 
 app.get("/fetchclasses",(req,res)=>{
@@ -103,9 +108,11 @@ app.post("/scheduleteacher",(req,res)=>{
 }
    
 });
+app.delete("/deleteschedule",()=>[
+    
+])
 
-
-app.listen(port,"localhost",()=>{
+app.listen(port,host,()=>{
     console.log(`connected to the server ${port}`);
 });
 
