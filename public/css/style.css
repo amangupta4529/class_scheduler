@@ -103,7 +103,7 @@ body {
 
 
  
-  .cancelButton, .deleteButton,#deleteButton {
+  .cancelButton, .deleteButton,#deleteButton,#deleteschedule {
     background-color: #d36c6c;
   }
   .saveButton, .closeButton,#closeButton {
