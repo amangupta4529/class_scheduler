@@ -3,7 +3,7 @@ const path=require('path');
 const mysql=require('mysql');
 
 
-const host="localhost";
+const host="0.0.0.0";
 const port=process.env.PORT || 3000;
 
 var connection=mysql.createConnection({
